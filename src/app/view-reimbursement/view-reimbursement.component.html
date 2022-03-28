@@ -1,0 +1,47 @@
+<div class="container">
+    <h3>View Reimbursments</h3>
+
+    <div>
+        <div>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Reimbursement ID</th>
+                        <th scope="col">Amount</th>
+                        <th scope="col">Submit Time</th>
+                        <th scope="col">Resolved Time</th>
+                        <th scope="col">Description</th>
+                        <th scope="col">Applicant ID</th>
+                        <th scope="col">Status ID</th>
+                        <th scope="col">Images</th>
+                        <!-- A structural directive that conditionally includes a template based on the value 
+                        of an expression coerced to Boolean. -->
+                        <th scope="col" *ngIf="isManager">Actions</th>
+                    </tr>
+                    <!-- users_id | users_name | password | first_name | last_name |     email     | users_role_id -->
+                </thead>
+                <tbody>
+                    <!-- NgFor is a built-in template directive that makes it easy to iterate over something like an array or 
+                    an object and create a template for each item. -->
+                    <tr *ngFor="let r of reimbursements">
+                        <td>{{r.reimbursementID}}</td>
+                        <td>{{r.reimbursementAmount}}</td>
+                        <td>{{r.reimbursementSubmitTime}}</td>
+                        <td>{{r.reimbursementResolvedTime}}</td>
+                        <td>{{r.reimbursementDescription}}</td>
+                        <td>{{r.reimbursementApplicantID}}</td>
+                        <td>{{r.reimbursementStatusID == 2 ? 'Pending' : r.reimbursementStatusID == 3 ? 'Approved' :
+                            r.reimbursementStatusID == 4 ? 'Denied' : 'Submitted'}}</td>
+                        <td><button type="button" *ngIf="r.imageId && r.imageId > 0" (click)="download(r.imageId)"
+                                class="btn btn-link">View Image</button></td>
+                        <td *ngIf="isManager">
+                            <button type="button" *ngIf="r.reimbursementStatusID == 2"
+                                (click)="approve(r.reimbursementID)" class="btn btn-link">Approve</button>
+                            <button type="button" *ngIf="r.reimbursementStatusID == 2" (click)="deny(r.reimbursementID)"
+                                class="btn btn-link">Deny</button>
+                        </td>
+                    </tr>
+                    <!-- 1 | a          | 1111     | a          | b         | abu@gmail.com |             1 -->
+                </tbody>
+            </table>
+        </div>

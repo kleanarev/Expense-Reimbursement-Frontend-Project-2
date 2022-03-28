@@ -1,0 +1,30 @@
+<div class="row mb-3">
+    <label class="col-sm-2 col-form-label">First Name:</label>
+    <label class="col-sm-2 col-form-label">{{user.firstName}}</label>
+
+
+</div>
+<div class="row mb-3">
+    <label class="col-sm-2 col-form-label">Last Name:</label>
+    <label class="col-sm-2 col-form-label">{{user.lastName}}</label>
+
+
+</div>
+<div class="row mb-3">
+    <label class="col-sm-2 col-form-label">Email:</label>
+    <label class="col-sm-2 col-form-label">{{user.email}}</label>
+
+
+</div>
+<div class="row mb-3">
+    <label class="col-sm-2 col-form-label">Role.ID:</label>
+    <label class="col-sm-2 col-form-label">{{user.roleID == 1 ? 'Employee' :'Manager'}}</label>
+</div>
+
+<div class="row mb-3">
+    <label class="col-sm-2 col-form-label">Reimbursement Request:</label>
+    <label class="col-sm-2 col-form-label"> <button type="button" class="btn btn-link"
+            (click)="showRequests(user.userID)">View
+            Requests</button>
+    </label>
+</div>
